@@ -81,6 +81,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 
@@ -159,3 +160,9 @@ nnoremap <leader><down> <c-w>j
 nnoremap <leader><up> <c-w>k
 nnoremap <leader><left> <c-w>h
 nnoremap <leader><right> <c-w>l
+
+nnoremap <leader>j <c-w>j
+nnoremap <leader>k <c-w>k
+nnoremap <leader>h <c-w>h
+nnoremap <leader>l <c-w>l
+
