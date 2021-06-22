@@ -20,6 +20,7 @@ set virtualedit=block,onemore   " 允许光标出现在最后一个字符的后�
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " 主题设置
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set termguicolors
 set background=dark
 let g:onedark_termcolors=256
 colorscheme onedark
@@ -55,7 +56,7 @@ call plug#begin('~/.config/nvim/autoload')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " 目录树
-Plug 'git://github.com/scrooloose/nerdtree.git'
+Plug 'preservim/nerdtree'
 
 " airline
 Plug 'vim-airline/vim-airline-themes'
@@ -65,7 +66,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'gcmt/wildfire.vim'
 
 " Go
-Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
+" Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 
 " vim-polyglot
 Plug 'sheerun/vim-polyglot'
@@ -79,6 +80,16 @@ Plug 'mbbill/undotree'
 " git
 Plug 'airblade/vim-gitgutter'
 Plug 'cohama/agit.vim'
+
+" 括号自动匹配
+Plug 'Raimondi/delimitMate'
+
+" bufferline
+Plug 'akinsho/nvim-bufferline.lua'
+Plug 'kyazdani42/nvim-web-devicons'
+
+" terminal
+Plug 'skywind3000/asyncrun.vim'
 
 call plug#end()
 
@@ -98,6 +109,10 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
 " nerdtree
 map tt :NERDTreeToggle<CR>           " 开启关闭目录树
 
@@ -115,3 +130,13 @@ nnoremap ud :UndotreeToggle<CR>
 let g:undotree_DiffpanelHeight = 8
 let g:undotree_SplitWidth = 24
 
+" bufferline
+
+lua require("bufferline").setup{}
+
+nnoremap <silent><C-l> :BufferLineCycleNext<CR>
+nnoremap <silent><C-h> :BufferLineCyclePrev<CR>
+nnoremap <silent> bp :BufferLinePick<CR>
+
+" ASyncRun
+let g:asyncrun_open=8
